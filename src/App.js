@@ -8,10 +8,7 @@ function Square( {value, onSquareClick } ) {
   );
 }
 
-export default function Board() {
-
-  const [ xIsNext, setXIsNext ] = useState( true );
-  const [ squares, setSquares ] = useState( Array(9).fill(null) );
+export default function Board({ xIsNext, squares, onPlay }) {
 
   const winner = calculateWinner(squares);
   let status;
@@ -33,8 +30,7 @@ export default function Board() {
     } else {
       nextSquares[i] = "O";
     }
-    setSquares(nextSquares);
-    setXIsNext(!xIsNext);
+    onPlay(nextSquares);
   }
 
   return (
