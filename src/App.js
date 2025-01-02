@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-function Square( {value, onSquareclick } ) {
+function Square( {value, onSquareClick } ) {
   return (
-    <button className="square" onClick = { onSquareclick } >
+    <button className="square" onClick = { onSquareClick } >
       {value}
     </button>
   );
@@ -12,10 +12,16 @@ export default function Board() {
 
   const [ squares, setSquares ] = useState( Array(9).fill(null) );
 
+  function handleClick(){
+    const nextSquares = squares.slice(); //slice引数なし=配列コピー
+    nextSquares[0] = "X";
+    setSquares(nextSquares);
+  }
+
   return (
     <>
       <div className="board-row">
-        <Square value = { squares[0] } />
+        <Square value = { squares[0]} onSquareClick={ handleClick } />
         <Square value = { squares[1] } />
         <Square value = { squares[2] } />
       </div>
